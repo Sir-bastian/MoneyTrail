@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Add Expense{% endblock %}
+{% block content %}
+<!-- Edit expenses -->
+<div class="container">
+    <h1>Edit Expense</h1>
+    <form method="POST" action="/edit-expense/{{ expense.id }}">
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" name="category" value="{{ expense.category }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" value="{{ expense.description }}" required>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" step="0.01" class="form-control" id="amount" name="amount" value="{{ expense.amount }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

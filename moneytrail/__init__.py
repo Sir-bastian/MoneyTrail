@@ -20,21 +20,20 @@ def create_app():
 
   from .models import User, Expense
 
+  # Create the database tables
   with app.app_context():
     if not path.exists('moneytrail/' + DB_NAME):
       db.create_all()
       print('Database created successfully!')
-  '''
-  Set up and configure the Flask-Login extension for
-  user authentication and session management
-  '''
+      
+  #Set up and configure the Flask-Login extension for
+  #user authentication and session management
   login_manager = LoginManager()
-  login_manager.login_view = 'auth.login'
+  login_manager.login_view = "auth.login"
   login_manager.init_app(app)
 
   @login_manager.user_loader
   def load_user(id):
     return User.query.get(int(id))
 
-  
   return app

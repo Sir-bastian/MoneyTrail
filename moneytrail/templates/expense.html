@@ -1,0 +1,35 @@
+{% extends "base.html" %}{% block title %}Add Expense{% endblock %}
+{% block content %}
+<!-- Retrieve expenses -->
+<div class="container">
+    <h1>Expenses</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.date }}</td>
+                <td>{{ expense.description }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>
+                    <a href="/edit-expense/{{ expense.id }}" class="btn btn-primary">Edit</a>
+                    <form action="/delete-expense/{{ expense.id }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/add-expense" class="btn btn-success">Add Expense</a>
+</div>
+{% endblock %}

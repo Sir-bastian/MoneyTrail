@@ -1,5 +1,16 @@
 {% extends "base.html" %}{% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>This is the Home Page</h1>
+<div>
+  <h1 align="center">Expenses</h1>
+  <h4>Financial Clarity on your fingertips</h4>
+  <a href="/add-expense">Add Expense</a>
+  <br>
+  <ul class="list=group list-group-flush" id="expenses">
+    {% for expense in user.expenses %}
+      <li class="list-group-item"">{{ expense.data }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
 {% endblock %}
